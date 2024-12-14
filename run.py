@@ -24,6 +24,7 @@ def create_app():
     jwt = JWTManager(app)
 
     CORS(app)
+    
 
     # 블루프린트 등록
     app.register_blueprint(auth_bp)

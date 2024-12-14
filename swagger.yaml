@@ -19,6 +19,8 @@ paths:
     post:
       summary: 회원가입
       description: 사용자 회원가입 API
+      tags:
+        - Auth
       requestBody:
         required: true
         content:
@@ -43,14 +45,41 @@ paths:
                   example: Seoul
                 is_admin:
                   type: boolean
+                  description: "admin 권한 가진 계정인지 정하기"
                   example: false
       responses:
-        '200':
-          description: 성공적으로 회원가입이 완료됨
+        '201':
+          description: 회원가입 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "User registered successfully."
+        '400':
+          description: 잘못된 요청 (필수 필드 누락 또는 중복된 이메일)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Email already exists."
   /auth/login:
     post:
       summary: 로그인
       description: 사용자 로그인 API
+      tags:
+        - Auth
       requestBody:
         required: true
         content:
@@ -66,30 +95,100 @@ paths:
                   example: "123"
       responses:
         '200':
-          description: 성공적으로 로그인됨
+          description: 로그인 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  token:
+                    type: object
+                    properties:
+                      access:
+                        type: string
+                        example: "jwt_access_token"
+                      refresh:
+                        type: string
+                        example: "jwt_refresh_token"
+        '401':
+          description: 인증 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid credentials."
   /auth/refresh:
     post:
       summary: 토큰 Refresh
       description: JWT Access Token을 갱신하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Auth
       responses:
         '200':
           description: 토큰 갱신 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  token:
+                    type: string
+                    example: "new_jwt_access_token"
   /auth/profile:
     get:
       summary: 프로필 조회
       description: 사용자 프로필 정보를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Auth
       responses:
         '200':
           description: 프로필 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        example: hi@example.com
+                      name:
+                        type: string
+                        example: John Doe
+                      preferred_sector:
+                        type: string
+                        example: IT
+                      preferred_location:
+                        type: string
+                        example: Seoul
     put:
       summary: 프로필 수정
       description: 사용자 프로필 정보를 수정하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Auth
       requestBody:
         required: true
         content:
@@ -109,26 +208,92 @@ paths:
       responses:
         '200':
           description: 프로필 수정 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Profile updated successfully."
+        '400':
+          description: 잘못된 요청 (수정할 데이터가 없는 경우)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "No data to update."
+        '500':
+          description: 내부 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Failed to update profile."
     delete:
       summary: 프로필 삭제
       description: 사용자 프로필을 삭제하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Auth
       responses:
         '200':
           description: 프로필 삭제 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Account deleted successfully."
+        '500':
+          description: 내부 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Failed to delete account."
   /activity-logs:
     get:
       summary: 활동 로그 조회
       description: 사용자의 활동 로그를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Activity-logs
       parameters:
         - name: page
           in: query
           required: false
           schema:
             type: integer
+            description: "페이지 번호 (기본값: 1)"
             example: 1
       responses:
         '200':
@@ -148,10 +313,12 @@ paths:
                       properties:
                         action:
                           type: string
+                          description: "활동 내용"
                           example: "User logged in"
                         timestamp:
                           type: string
                           format: date-time
+                          description: "활동 발생 시간"
                           example: "2024-01-01T12:00:00Z"
                   pagination:
                     type: object
@@ -165,69 +332,193 @@ paths:
                       totalItems:
                         type: integer
                         example: 100
+        '400':
+          description: 잘못된 요청 (페이지 값이 유효하지 않을 때)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid page parameter."
+        '401':
+          description: 인증 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Unauthorized."
+        '500':
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Internal server error."
   /jobs:
     get:
       summary: 채용 공고 목록 조회
       description: 채용 공고를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Jobs
       parameters:
         - name: page
           in: query
           required: false
           schema:
             type: integer
+            description: "페이지 번호"
             example: 1
         - name: location
           in: query
           required: false
           schema:
             type: string
+            description: "지역별 필터링"
             example: 서울
         - name: experience
           in: query
           required: false
           schema:
             type: string
+            description: "경력별 필터링"
             example: 신입
         - name: salary
           in: query
           required: false
           schema:
             type: integer
+            description: "최소 연봉 필터링"
             example: 3000
         - name: tech_stack
           in: query
           required: false
           schema:
             type: string
+            description: "기술 스택 필터링"
             example: Python
         - name: keyword
           in: query
           required: false
           schema:
             type: string
+            description: "키워드 검색"
             example: 개발자
         - name: sort_by
           in: query
           required: false
           schema:
             type: string
+            description: "정렬 기준 (created_at 또는 deadline)"
             example: created_at
         - name: order
           in: query
           required: false
           schema:
             type: string
+            description: "정렬 순서 (asc 또는 desc)"
             example: desc
       responses:
         '200':
-          description: 채용 공고 조회 성공
+          description: 채용 공고 목록 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: "채용 공고 ID"
+                          example: "64a8321fd4e07f3b5c940b42"
+                        title:
+                          type: string
+                          description: "공고 제목"
+                          example: "Backend Developer"
+                        company:
+                          type: string
+                          description: "회사 이름"
+                          example: "TechCorp"
+                        location:
+                          type: string
+                          description: "근무 지역"
+                          example: "Seoul"
+                        experience:
+                          type: string
+                          description: "경력 요구 사항"
+                          example: "2+ years"
+                        salary:
+                          type: integer
+                          description: "연봉"
+                          example: 50000
+                        tech_stack:
+                          type: array
+                          items:
+                            type: string
+                          description: "필요 기술 스택"
+                          example: ["Python", "Flask"]
+                        created_at:
+                          type: string
+                          format: date-time
+                          description: "공고 생성 시간"
+                          example: "2024-01-01T12:00:00Z"
+                  pagination:
+                    type: object
+                    properties:
+                      currentPage:
+                        type: integer
+                        example: 1
+                      totalPages:
+                        type: integer
+                        example: 10
+                      totalItems:
+                        type: integer
+                        example: 200
+        '400':
+          description: 잘못된 요청
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid salary value."
     post:
       summary: 채용 공고 등록
       description: 새로운 채용 공고를 등록하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Jobs
       requestBody:
         required: true
         content:
@@ -237,65 +528,197 @@ paths:
               properties:
                 title:
                   type: string
+                  description: "공고 제목"
                   example: Backend Developer
                 company:
                   type: string
+                  description: "회사 이름"
                   example: TechCorp
                 location:
                   type: string
+                  description: "근무 지역"
                   example: Seoul
                 sector:
                   type: string
+                  description: "산업 분야"
                   example: IT
                 experience:
                   type: string
+                  description: "경력 요구 사항"
                   example: 2+ years
                 salary:
                   type: integer
+                  description: "연봉"
                   example: 50000
                 tech_stack:
                   type: array
                   items:
                     type: string
+                  description: "필요 기술 스택"
                   example: ["Python", "Flask"]
                 description:
                   type: string
+                  description: "공고 설명"
                   example: Develop and maintain backend APIs.
                 deadline:
                   type: string
                   format: date
+                  description: "마감 기한"
                   example: 2024-12-31
       responses:
         '201':
           description: 채용 공고 등록 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Job posting created successfully."
+        '400':
+          description: 잘못된 요청 (필수 필드 누락 또는 잘못된 값)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Missing required fields."
+        '403':
+          description: 관리자 권한 없음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Unauthorized."
   /jobs/{job_id}:
     get:
       summary: 채용 공고 상세 조회
       description: 특정 채용 공고의 상세 정보를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Jobs
       parameters:
         - name: job_id
           in: path
           required: true
           schema:
             type: string
-          example: 675ac1d29366f5eee402e8cc
+            description: "조회할 공고 ID"
+            example: 675ac1d29366f5eee402e8cc
       responses:
         '200':
           description: 채용 공고 상세 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: "공고 ID"
+                        example: "64a8321fd4e07f3b5c940b42"
+                      title:
+                        type: string
+                        description: "공고 제목"
+                        example: "Backend Developer"
+                      description:
+                        type: string
+                        description: "공고 설명"
+                        example: "Develop and maintain backend APIs."
+                      company:
+                        type: string
+                        description: "회사 이름"
+                        example: "TechCorp"
+                      location:
+                        type: string
+                        description: "근무 지역"
+                        example: "Seoul"
+                      experience:
+                        type: string
+                        description: "경력 요구 사항"
+                        example: "2+ years"
+                      salary:
+                        type: integer
+                        description: "연봉"
+                        example: 50000
+                      tech_stack:
+                        type: array
+                        items:
+                          type: string
+                        description: "필요 기술 스택"
+                        example: ["Python", "Flask"]
+                      views:
+                        type: integer
+                        description: "조회수"
+                        example: 120
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: "공고 생성 시간"
+                        example: "2024-01-01T12:00:00Z"
+                  related_jobs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: "관련 공고 ID"
+                          example: "64b8321fd4e07f3b5c940c43"
+                        title:
+                          type: string
+                          description: "관련 공고 제목"
+                          example: "Frontend Developer"
+        '404':
+          description: 공고가 존재하지 않음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Job not found."
     put:
       summary: 채용 공고 수정
       description: 채용 공고를 수정하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Jobs
       parameters:
         - name: job_id
           in: path
           required: true
           schema:
             type: string
-          example: 675ac1d29366f5eee402e8cc
+            description: "수정할 공고 ID"
+            example: 675ac1d29366f5eee402e8cc
       requestBody:
         required: true
         content:
@@ -305,71 +728,281 @@ paths:
               properties:
                 title:
                   type: string
+                  description: "수정된 공고 제목"
                   example: 기술 엔지니어
                 salary:
                   type: integer
+                  description: "수정된 연봉"
                   example: 3000
                 tech_stack:
                   type: array
                   items:
                     type: string
+                  description: "수정된 기술 스택"
                   example: ["Python", "Flask", "AWS"]
       responses:
         '200':
           description: 채용 공고 수정 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Job posting updated successfully."
+        '400':
+          description: 잘못된 요청 (수정할 데이터가 없는 경우)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "No data to update."
+        '403':
+          description: 관리자 권한 없음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Unauthorized."
+        '404':
+          description: 수정할 공고가 존재하지 않음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Job not found."
     delete:
       summary: 채용 공고 삭제
       description: 특정 채용 공고를 삭제하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Jobs
       parameters:
         - name: job_id
           in: path
           required: true
           schema:
             type: string
-          example: 675ac1d29366f5eee402e8cc
+            description: "삭제할 공고 ID"
+            example: 675ac1d29366f5eee402e8cc
       responses:
         '200':
           description: 채용 공고 삭제 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Job posting deleted successfully."
+        '403':
+          description: 관리자 권한 없음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Unauthorized."
+        '404':
+          description: 삭제할 공고가 존재하지 않음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Job not found."
   /companies:
     get:
       summary: 회사 목록 조회
       description: 모든 회사를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Companies
       parameters:
         - name: page
           in: query
           required: false
           schema:
             type: integer
+            description: "페이지 번호"
             example: 1
       responses:
         '200':
           description: 회사 목록 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: "회사 ID"
+                          example: "64a8321fd4e07f3b5c940b42"
+                        name:
+                          type: string
+                          description: "회사 이름"
+                          example: "Tech Corp"
+                        sector:
+                          type: string
+                          description: "산업 분야"
+                          example: "IT"
+                        view:
+                          type: integer
+                          description: "회사 조회수"
+                          example: 120
+                        job_count:
+                          type: integer
+                          description: "등록된 채용 공고 수"
+                          example: 15
+                  pagination:
+                    type: object
+                    properties:
+                      currentPage:
+                        type: integer
+                        description: "현재 페이지"
+                        example: 1
+                      totalPages:
+                        type: integer
+                        description: "전체 페이지 수"
+                        example: 5
+                      totalItems:
+                        type: integer
+                        description: "전체 회사 수"
+                        example: 100
+        '400':
+          description: 잘못된 요청
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid page parameter."
   /companies/{company_id}:
     get:
       summary: 회사 정보 조회
       description: 특정 회사의 상세 정보를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Companies
       parameters:
         - name: company_id
           in: path
           required: true
           schema:
             type: string
-          example: 64a8321fd4e07f3b5c940b42
+            description: "조회할 회사 ID"
+            example: 64a8321fd4e07f3b5c940b42
       responses:
         '200':
           description: 회사 정보 조회 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: "회사 ID"
+                        example: "64a8321fd4e07f3b5c940b42"
+                      name:
+                        type: string
+                        description: "회사 이름"
+                        example: "Tech Corp"
+                      sector:
+                        type: string
+                        description: "산업 분야"
+                        example: "IT"
+                      view:
+                        type: integer
+                        description: "회사 조회수"
+                        example: 120
+                      job_count:
+                        type: integer
+                        description: "등록된 채용 공고 수"
+                        example: 15
+                      description:
+                        type: string
+                        description: "회사 설명"
+                        example: "Leading IT company specializing in software solutions."
+        '404':
+          description: 회사 정보가 존재하지 않음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Company not found."
   /reviews:
     post:
       summary: 회사 리뷰 추가
       description: 특정 회사에 대한 리뷰를 추가하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Reviews
       requestBody:
         required: true
         content:
@@ -379,30 +1012,58 @@ paths:
               properties:
                 company_id:
                   type: string
+                  description: "리뷰를 추가할 회사 ID"
                   example: 64a8321fd4e07f3b5c940b42
                 rating:
                   type: integer
+                  description: "리뷰 평점 (1~5)"
                   example: 5
                 review_text:
                   type: string
+                  description: "리뷰 내용"
                   example: Great company to work with!
       responses:
         '201':
           description: 리뷰 추가 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Review added successfully."
         '400':
           description: 잘못된 요청 (중복 리뷰 또는 필수 데이터 누락)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Company ID and rating are required."
   /reviews/{company_id}:        
     get:
       summary: 회사 리뷰 조회
       description: 특정 회사에 대한 리뷰를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Reviews
       parameters:
         - name: company_id
           in: path
           required: true
           schema:
             type: string
+            description: "조회할 회사 ID"
             example: 64a8321fd4e07f3b5c940b42
       responses:
         '200':
@@ -422,43 +1083,85 @@ paths:
                       properties:
                         user_email:
                           type: string
+                          description: "리뷰 작성자 이메일"
                           example: "user@example.com"
                         rating:
                           type: integer
+                          description: "리뷰 평점"
                           example: 5
                         review_text:
                           type: string
+                          description: "리뷰 내용"
                           example: "Great company to work with!"
                         created_at:
                           type: string
                           format: date-time
+                          description: "리뷰 작성 시간"
                           example: "2024-01-01T12:00:00Z"
         '404':
           description: 리뷰가 존재하지 않음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "No reviews found for this company."
   /reviews/{review_id}:        
     delete:
       summary: 리뷰 삭제
       description: 특정 리뷰를 삭제하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Reviews
       parameters:
         - name: review_id
           in: path
           required: true
           schema:
             type: string
+            description: "삭제할 리뷰 ID"
             example: 5f4e28b7f1d47f3b5c9a4f82
       responses:
         '200':
           description: 리뷰 삭제 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Review deleted successfully."
         '404':
           description: 리뷰를 찾을 수 없거나 권한이 없음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Review not found or unauthorized."
   /applications:
     post:
       summary: 지원하기
       description: 특정 채용 공고에 지원하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Applications
       requestBody:
         required: true
         content:
@@ -468,38 +1171,67 @@ paths:
               properties:
                 job_id:
                   type: string
+                  description: "지원할 공고 ID"
                   example: "64a8321fd4e07f3b5c940b42"
                 cover_letter:
                   type: string
+                  description: "자기소개서 내용"
                   example: "I am excited to apply for this position."
       responses:
         '201':
           description: 지원 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Application submitted successfully."
         '400':
-          description: 잘못된 요청 (Job ID 누락 또는 중복 지원)
+          description: 잘못된 요청
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid Job ID."
     get:
       summary: 지원 내역 조회
       description: 사용자별 지원 내역을 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Applications
       parameters:
         - name: status
           in: query
           required: false
           schema:
             type: string
+            description: "필터링할 지원 상태"
             example: "Pending"
         - name: sort_by
           in: query
           required: false
           schema:
             type: string
+            description: "정렬 기준 (기본값: created_at)"
             example: "created_at"
         - name: page
           in: query
           required: false
           schema:
             type: integer
+            description: "페이지 번호"
             example: 1
       responses:
         '200':
@@ -528,7 +1260,7 @@ paths:
                           example: "user@example.com"
                         status:
                           type: string
-                          example: "pending"
+                          example: "Pending"
                         created_at:
                           type: string
                           format: date-time
@@ -545,30 +1277,83 @@ paths:
                       totalItems:
                         type: integer
                         example: 100
+        '400':
+          description: 잘못된 요청
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid query parameter."
   /applications/{application_id}:                      
     delete:
       summary: 지원 취소
       description: 특정 지원 내역을 취소하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Applications
       parameters:
         - name: application_id
           in: path
           required: true
           schema:
             type: string
+            description: "취소할 지원 ID"
             example: "64a8321fd4e07f3b5c940b42"
       responses:
         '200':
           description: 지원 취소 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Application deleted successfully."
         '404':
           description: 지원 내역이 존재하지 않음
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Application not found."
+        '500':
+          description: 서버 오류
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Failed to cancel application."
   /bookmarks:
     post:
       summary: 북마크 추가/제거
       description: 채용 공고를 북마크 추가 또는 제거하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Bookmarks
       requestBody:
         required: true
         content:
@@ -578,25 +1363,62 @@ paths:
               properties:
                 job_id:
                   type: string
+                  description: "북마크할 공고 ID"
                   example: "64a8321fd4e07f3b5c940b42"
       responses:
         '200':
           description: 북마크 제거 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Bookmark removed successfully."
         '201':
           description: 북마크 추가 성공
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "Bookmark added successfully."
         '400':
-          description: 잘못된 요청 (Job ID 누락 또는 유효하지 않은 ID)
+          description: 요청 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid Job ID."
     get:
       summary: 북마크 목록 조회
       description: 북마크한 채용 공고를 조회하는 API
       security:
         - bearerAuth: []
+      tags:
+        - Bookmarks
       parameters:
         - name: page
           in: query
           required: false
           schema:
             type: integer
+            description: "페이지 번호"
             example: 1
       responses:
         '200':
@@ -616,10 +1438,12 @@ paths:
                       properties:
                         job_id:
                           type: string
+                          description: "북마크한 공고 ID"
                           example: "64a8321fd4e07f3b5c940b42"
                         created_at:
                           type: string
                           format: date-time
+                          description: "북마크 추가 날짜"
                           example: "2024-01-01T12:00:00Z"
                   pagination:
                     type: object
@@ -629,8 +1453,125 @@ paths:
                         example: 1
                       totalPages:
                         type: integer
-                        example: 10
+                        example: 5
                       totalItems:
                         type: integer
-                        example: 100
-
+                        example: 50
+        '400':
+          description: 요청 실패
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: "Invalid page parameter."
+  /feedback:
+    post:
+      summary: "피드백 제출"
+      description: "사용자가 플랫폼에 대한 피드백을 제출합니다."
+      security:
+        - bearerAuth: []
+      tags:
+        - Feedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                feedback_type:
+                  type: string
+                  enum: [bug, suggestion, general]
+                  description: "피드백 유형"
+                message:
+                  type: string
+                  description: "피드백 메시지"
+              required:
+                - feedback_type
+                - message
+      responses:
+        "201":
+          description: "피드백이 성공적으로 제출되었습니다."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      user_email:
+                        type: string
+                      feedback_type:
+                        type: string
+                      message:
+                        type: string
+                      created_at:
+                        type: string
+                        format: date-time
+        "400":
+          description: "요청 데이터가 유효하지 않습니다."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+    get:
+      summary: "피드백 조회"
+      description: "등록된 피드백 목록을 조회합니다."
+      security:
+        - bearerAuth: []
+      tags:
+        - Feedback
+      parameters:
+        - name: feedback_type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [bug, suggestion, general]
+          description: "피드백 유형으로 필터링"
+        - name: user_email
+          in: query
+          required: false
+          schema:
+            type: string
+          description: "특정 사용자의 피드백만 조회"
+      responses:
+        "200":
+          description: "피드백 목록이 성공적으로 반환되었습니다."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        user_email:
+                          type: string
+                        feedback_type:
+                          type: string
+                        message:
+                          type: string
+                        created_at:
+                          type: string
+                          format: date-time

@@ -9,6 +9,7 @@ from app.routes.company import company_bp
 from app.routes.reviews import reviews_bp
 from app.routes.swagger import init_app as init_swagger  # Swagger 관련 초기화
 from flask_cors import CORS
+from app.routes.feedback import feedback_bp
 
 def create_app():
     app = Flask(__name__)
@@ -32,6 +33,7 @@ def create_app():
     app.register_blueprint(activity_logs_bp)
     app.register_blueprint(company_bp)
     app.register_blueprint(reviews_bp)
+    app.register_blueprint(feedback_bp)
     return app
 
 if __name__ == "__main__":

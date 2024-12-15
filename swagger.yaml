@@ -6,7 +6,7 @@ info:
 servers:
   - url: http://localhost:5000
     description: Local development server
-  - url: https://imsh429.github.io/backend-project/
+  - url: http://113.198.66.75:18115
     description: 배포 서버
 components:
   responses:

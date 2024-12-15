@@ -1,7 +1,7 @@
 # user 데이터베이스 모델 정의
 from pymongo import MongoClient
 
-client = MongoClient("mongodb://113.198.66.75:13115/")
+client = MongoClient("mongodb://seohyeon:123@113.198.66.75:13115/job_database")
 db = client["job_database"]
 users_collection = db["users"]
 
@@ -49,3 +49,4 @@ class User:
         """사용자의 관리자 여부 확인"""
         user = users_collection.find_one({"email": email})
         return user and user.get("is_admin", False)
+    

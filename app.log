@@ -1,0 +1,200 @@
+2024-12-15 14:42:17,516 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.4:5000
+2024-12-15 14:42:17,517 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 14:42:17,521 - INFO -  * Restarting with stat
+2024-12-15 14:42:18,241 - WARNING -  * Debugger is active!
+2024-12-15 14:42:18,246 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 14:43:50,770 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\routes\\applications.py', reloading
+2024-12-15 14:43:51,376 - INFO -  * Restarting with stat
+2024-12-15 14:43:52,256 - WARNING -  * Debugger is active!
+2024-12-15 14:43:52,272 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 14:43:54,856 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:54] "GET /swagger/ HTTP/1.1" 200 -
+2024-12-15 14:43:55,185 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/index.css HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,269 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,359 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/swagger-ui.css HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,436 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,557 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/swagger-ui-bundle.js.map HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,557 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/swagger-ui.css.map HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,698 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/swagger.yaml HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,700 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/favicon-32x32.png HTTP/1.1[0m" 304 -
+2024-12-15 14:43:55,844 - INFO - 127.0.0.1 - - [15/Dec/2024 14:43:55] "[36mGET /swagger/swagger-ui-standalone-preset.js.map HTTP/1.1[0m" 304 -
+2024-12-15 14:44:18,617 - INFO - 127.0.0.1 - - [15/Dec/2024 14:44:18] "OPTIONS /applications HTTP/1.1" 200 -
+2024-12-15 14:44:18,880 - INFO - 127.0.0.1 - - [15/Dec/2024 14:44:18] "[31m[1mPOST /applications HTTP/1.1[0m" 401 -
+2024-12-15 14:44:30,033 - INFO - 127.0.0.1 - - [15/Dec/2024 14:44:30] "OPTIONS /applications HTTP/1.1" 200 -
+2024-12-15 14:44:30,354 - INFO - 127.0.0.1 - - [15/Dec/2024 14:44:30] "[35m[1mPOST /applications HTTP/1.1[0m" 500 -
+2024-12-15 14:44:43,909 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\routes\\applications.py', reloading
+2024-12-15 14:44:44,451 - INFO -  * Restarting with stat
+2024-12-15 14:44:45,265 - WARNING -  * Debugger is active!
+2024-12-15 14:44:45,273 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 14:44:47,099 - INFO - 127.0.0.1 - - [15/Dec/2024 14:44:47] "OPTIONS /applications HTTP/1.1" 200 -
+2024-12-15 14:44:47,359 - INFO - 127.0.0.1 - - [15/Dec/2024 14:44:47] "[31m[1mPOST /applications HTTP/1.1[0m" 400 -
+2024-12-15 14:45:16,097 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\routes\\applications.py', reloading
+2024-12-15 14:45:16,477 - INFO -  * Restarting with stat
+2024-12-15 14:45:17,216 - WARNING -  * Debugger is active!
+2024-12-15 14:45:17,221 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 14:45:19,071 - INFO - 127.0.0.1 - - [15/Dec/2024 14:45:19] "[35m[1mPOST /applications HTTP/1.1[0m" 500 -
+2024-12-15 14:45:28,599 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\routes\\applications.py', reloading
+2024-12-15 14:45:28,839 - INFO -  * Restarting with stat
+2024-12-15 14:45:29,698 - WARNING -  * Debugger is active!
+2024-12-15 14:45:29,703 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 15:04:53,507 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.4:5000
+2024-12-15 15:04:53,507 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 15:04:53,510 - INFO -  * Restarting with stat
+2024-12-15 15:04:54,488 - WARNING -  * Debugger is active!
+2024-12-15 15:04:54,494 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 15:10:02,739 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:02] "[33mGET / HTTP/1.1[0m" 404 -
+2024-12-15 15:10:07,255 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:07] "GET /swagger/ HTTP/1.1" 200 -
+2024-12-15 15:10:07,694 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:07] "[36mGET /swagger/index.css HTTP/1.1[0m" 304 -
+2024-12-15 15:10:07,707 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:07] "[36mGET /swagger/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2024-12-15 15:10:07,781 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:07] "[36mGET /swagger/swagger-ui.css HTTP/1.1[0m" 304 -
+2024-12-15 15:10:07,940 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:07] "[36mGET /swagger/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2024-12-15 15:10:08,033 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:08] "GET /swagger/swagger.yaml HTTP/1.1" 200 -
+2024-12-15 15:10:12,060 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:12] "GET /swagger/ HTTP/1.1" 200 -
+2024-12-15 15:10:12,079 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:12] "[36mGET /swagger/swagger-ui.css HTTP/1.1[0m" 304 -
+2024-12-15 15:10:12,081 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:12] "[36mGET /swagger/index.css HTTP/1.1[0m" 304 -
+2024-12-15 15:10:12,082 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:12] "[36mGET /swagger/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2024-12-15 15:10:12,146 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:12] "[36mGET /swagger/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2024-12-15 15:10:12,362 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:12] "[36mGET /swagger/swagger.yaml HTTP/1.1[0m" 304 -
+2024-12-15 15:10:13,838 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:13] "[33mGET /swagger.yaml HTTP/1.1[0m" 404 -
+2024-12-15 15:10:15,902 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:15] "GET /swagger/ HTTP/1.1" 200 -
+2024-12-15 15:10:15,950 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:15] "[36mGET /swagger/index.css HTTP/1.1[0m" 304 -
+2024-12-15 15:10:15,952 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:15] "[36mGET /swagger/swagger-ui.css HTTP/1.1[0m" 304 -
+2024-12-15 15:10:15,956 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:15] "[36mGET /swagger/swagger-ui-bundle.js HTTP/1.1[0m" 304 -
+2024-12-15 15:10:15,974 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:15] "[36mGET /swagger/swagger-ui-standalone-preset.js HTTP/1.1[0m" 304 -
+2024-12-15 15:10:16,226 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:16] "[36mGET /swagger/swagger.yaml HTTP/1.1[0m" 304 -
+2024-12-15 15:10:19,605 - INFO - 127.0.0.1 - - [15/Dec/2024 15:10:19] "[36mGET /swagger/swagger.yaml HTTP/1.1[0m" 304 -
+2024-12-15 15:17:33,006 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\crawl_saramin.py', reloading
+2024-12-15 15:17:33,607 - INFO -  * Restarting with stat
+2024-12-15 15:17:34,742 - WARNING -  * Debugger is active!
+2024-12-15 15:17:34,751 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:38:44,689 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.4:5000
+2024-12-15 16:38:44,690 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 16:38:44,692 - INFO -  * Restarting with stat
+2024-12-15 16:38:45,445 - WARNING -  * Debugger is active!
+2024-12-15 16:38:45,462 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:40:26,102 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.4:5000
+2024-12-15 16:40:26,104 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 16:40:26,106 - INFO -  * Restarting with stat
+2024-12-15 16:40:26,830 - WARNING -  * Debugger is active!
+2024-12-15 16:40:26,837 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:41:24,621 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\applications.py', reloading
+2024-12-15 16:41:25,112 - INFO -  * Restarting with stat
+2024-12-15 16:41:26,083 - WARNING -  * Debugger is active!
+2024-12-15 16:41:26,092 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:41:45,683 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\__init__.py', reloading
+2024-12-15 16:41:46,160 - INFO -  * Restarting with stat
+2024-12-15 16:41:46,993 - WARNING -  * Debugger is active!
+2024-12-15 16:41:46,998 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:44:13,097 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\user.py', reloading
+2024-12-15 16:44:13,652 - INFO -  * Restarting with stat
+2024-12-15 16:44:14,790 - WARNING -  * Debugger is active!
+2024-12-15 16:44:14,801 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:44:33,502 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\review.py', reloading
+2024-12-15 16:44:34,144 - INFO -  * Restarting with stat
+2024-12-15 16:44:35,777 - WARNING -  * Debugger is active!
+2024-12-15 16:44:35,787 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:44:38,969 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\jobs.py', reloading
+2024-12-15 16:44:39,504 - INFO -  * Restarting with stat
+2024-12-15 16:44:40,916 - WARNING -  * Debugger is active!
+2024-12-15 16:44:40,923 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:44:43,067 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\feedback.py', reloading
+2024-12-15 16:44:43,509 - INFO -  * Restarting with stat
+2024-12-15 16:44:44,814 - WARNING -  * Debugger is active!
+2024-12-15 16:44:44,835 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:44:49,241 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\company.py', reloading
+2024-12-15 16:44:49,838 - INFO -  * Restarting with stat
+2024-12-15 16:44:51,033 - WARNING -  * Debugger is active!
+2024-12-15 16:44:51,038 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:44:57,303 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\bookmarks.py', reloading
+2024-12-15 16:44:57,937 - INFO -  * Restarting with stat
+2024-12-15 16:44:58,960 - WARNING -  * Debugger is active!
+2024-12-15 16:44:58,967 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:46:56,765 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\initialize_company.py', reloading
+2024-12-15 16:46:57,534 - INFO -  * Restarting with stat
+2024-12-15 16:46:59,177 - WARNING -  * Debugger is active!
+2024-12-15 16:46:59,185 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:47:09,566 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\csv_to_mongodb.py', reloading
+2024-12-15 16:47:10,146 - INFO -  * Restarting with stat
+2024-12-15 16:47:11,050 - WARNING -  * Debugger is active!
+2024-12-15 16:47:11,057 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:47:57,734 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\csv_to_mongodb.py', reloading
+2024-12-15 16:47:58,422 - INFO -  * Restarting with stat
+2024-12-15 16:47:59,995 - WARNING -  * Debugger is active!
+2024-12-15 16:48:00,003 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:48:18,875 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.4:5000
+2024-12-15 16:48:18,877 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 16:48:18,880 - INFO -  * Restarting with stat
+2024-12-15 16:48:19,992 - WARNING -  * Debugger is active!
+2024-12-15 16:48:20,003 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:48:42,928 - INFO - 127.0.0.1 - - [15/Dec/2024 16:48:42] "[35m[1mPOST /auth/register HTTP/1.1[0m" 201 -
+2024-12-15 16:48:59,909 - INFO - 127.0.0.1 - - [15/Dec/2024 16:48:59] "POST /auth/login HTTP/1.1" 200 -
+2024-12-15 16:50:20,494 - INFO - 127.0.0.1 - - [15/Dec/2024 16:50:20] "POST /auth/login HTTP/1.1" 200 -
+2024-12-15 16:50:42,760 - INFO - 127.0.0.1 - - [15/Dec/2024 16:50:42] "GET /auth/profile HTTP/1.1" 200 -
+2024-12-15 16:50:57,145 - INFO - 127.0.0.1 - - [15/Dec/2024 16:50:57] "PUT /auth/profile HTTP/1.1" 200 -
+2024-12-15 16:51:20,905 - INFO - 127.0.0.1 - - [15/Dec/2024 16:51:20] "GET /jobs HTTP/1.1" 200 -
+2024-12-15 16:53:52,096 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\activity_log.py', reloading
+2024-12-15 16:53:52,824 - INFO -  * Restarting with stat
+2024-12-15 16:53:54,241 - WARNING -  * Debugger is active!
+2024-12-15 16:53:54,248 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:55:01,912 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\applications.py', reloading
+2024-12-15 16:55:02,697 - INFO -  * Restarting with stat
+2024-12-15 16:55:03,931 - WARNING -  * Debugger is active!
+2024-12-15 16:55:03,944 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:55:54,922 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\bookmarks.py', reloading
+2024-12-15 16:55:55,457 - INFO -  * Restarting with stat
+2024-12-15 16:55:56,442 - WARNING -  * Debugger is active!
+2024-12-15 16:55:56,449 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:57:22,544 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\company.py', reloading
+2024-12-15 16:57:23,175 - INFO -  * Restarting with stat
+2024-12-15 16:57:24,777 - WARNING -  * Debugger is active!
+2024-12-15 16:57:24,782 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:58:09,484 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\errors.py', reloading
+2024-12-15 16:58:10,129 - INFO -  * Restarting with stat
+2024-12-15 16:58:11,936 - WARNING -  * Debugger is active!
+2024-12-15 16:58:11,945 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 16:58:56,687 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\feedback.py', reloading
+2024-12-15 16:58:57,308 - INFO -  * Restarting with stat
+2024-12-15 16:58:58,428 - WARNING -  * Debugger is active!
+2024-12-15 16:58:58,434 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 17:00:11,306 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\jobs.py', reloading
+2024-12-15 17:00:11,796 - INFO -  * Restarting with stat
+2024-12-15 17:00:12,935 - WARNING -  * Debugger is active!
+2024-12-15 17:00:12,946 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 17:02:46,287 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\review.py', reloading
+2024-12-15 17:02:46,812 - INFO -  * Restarting with stat
+2024-12-15 17:02:48,979 - WARNING -  * Debugger is active!
+2024-12-15 17:02:48,988 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 17:04:56,053 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\user.py', reloading
+2024-12-15 17:04:56,621 - INFO -  * Restarting with stat
+2024-12-15 17:05:27,818 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.4:5000
+2024-12-15 17:05:27,819 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 17:05:27,824 - INFO -  * Restarting with stat
+2024-12-15 17:05:28,788 - WARNING -  * Debugger is active!
+2024-12-15 17:05:28,799 - INFO -  * Debugger PIN: 903-782-649
+2024-12-15 17:05:39,352 - INFO -  * Detected change in 'C:\\Users\\sh994\\gitProject\\backend-project\\app\\models\\user.py', reloading
+2024-12-15 17:05:39,898 - INFO -  * Restarting with stat
+2024-12-15 17:07:20,196 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.4:5000
+2024-12-15 17:07:20,197 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-15 17:07:20,200 - INFO -  * Restarting with stat
+2024-12-15 17:07:21,114 - WARNING -  * Debugger is active!
+2024-12-15 17:07:21,122 - INFO -  * Debugger PIN: 903-782-649

@@ -101,5 +101,5 @@ def crawl_saramin(keyword, pages=1, retries=3):
 
 
 if __name__ == "__main__":
-    df = crawl_saramin('개발', pages=4)
+    df = crawl_saramin('개발', pages=5)
     df.to_csv('saramin_python.csv', index=False)

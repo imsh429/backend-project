@@ -4,7 +4,7 @@ import re
 
 # MongoDB 연결 설정
 def connect_to_mongo():
-    client = MongoClient("mongodb://113.198.66.75:13115/")  # MongoDB 서버 정보
+    client = MongoClient("mongodb://seohyeon:123@113.198.66.75:13115/job_database")
     db = client["job_database"]  # 데이터베이스 이름
     return db
 

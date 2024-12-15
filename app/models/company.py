@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
 
-client = MongoClient("mongodb://113.198.66.75:13115/")
+client = MongoClient("mongodb://seohyeon:123@113.198.66.75:13115/job_database")
 db = client["job_database"]
 company_collection = db["company"]
 

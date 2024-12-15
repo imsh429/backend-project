@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.models.applications import Application, applications_collection
 from app.models.jobs import jobs_collection
 from app.models.activity_log import ActivityLog
+from app.models.errors import ValidationError, NotFoundError
 
 applications_bp = Blueprint("applications", __name__, url_prefix="/applications")
 

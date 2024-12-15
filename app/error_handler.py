@@ -1,38 +1,28 @@
-# 글로벌 에러 핸들러, 커스텀 에러 클래스
 from flask import jsonify
-from app.utils.logger import logger
+from app.models.errors import BaseError
+from app.utils.logger import log_error
 
-# 커스텀 에러 클래스
-class CustomError(Exception):
-    status_code = 400
-
-    def __init__(self, message, status_code=None):
-        super().__init__(message)
-        if status_code:
-            self.status_code = status_code
-        self.message = message
-
-    def to_dict(self):
-        return {"status": "error", "message": self.message}
-
-class AuthenticationError(CustomError):
-    status_code = 401
-
-class ValidationError(CustomError):
-    status_code = 400
-
-# 글로벌 에러 핸들러
 def register_error_handlers(app):
-    @app.errorhandler(CustomError)
+    """글로벌 에러 핸들러 등록"""
+
+    @app.errorhandler(BaseError)
     def handle_custom_error(error):
-        logger.error(f"Custom Error: {error.message}")
-        response = jsonify(error.to_dict())
+        """커스텀 에러 처리"""
+        response = jsonify({
+            "status": "error",
+            "message": error.message
+        })
         response.status_code = error.status_code
+        log_error(f"{error.status_code} - {error.message}")
         return response
 
-    @app.errorhandler(500)
-    def handle_internal_error(error):
-        logger.error(f"Internal Server Error: {str(error)}")
-        response = jsonify({"status": "error", "message": "An unexpected error occurred."})
+    @app.errorhandler(Exception)
+    def handle_general_error(error):
+        """예상치 못한 에러 처리"""
+        response = jsonify({
+            "status": "error",
+            "message": "An unexpected error occurred."
+        })
         response.status_code = 500
+        log_error(f"500 - {str(error)}")
         return response

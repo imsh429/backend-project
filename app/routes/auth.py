@@ -129,9 +129,8 @@ def delete_profile():
 
     return jsonify({
         "status": "success",
-        "message": "Account deleted successfully"
+        "message": f"Account deleted successfully, and {log_result.deleted_count} activity logs were deleted."
     }), 200
-
 
 # 사용자 정보 조회 API
 @auth_bp.route('/profile', methods=['GET'])
